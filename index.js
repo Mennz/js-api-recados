@@ -23,7 +23,7 @@ app.get("/recados", (req, res) => {
 app.post("/recados", (req, res) => {
   const { texto } = req.body;
 
-  if (!texto) {
+  if (!texto || !texto.trim()) {
     return res.status(400).json({ erro: "texto e obrigatorio" });
   }
 
@@ -44,7 +44,7 @@ app.put("/recados/:id", (req, res) => {
     return res.status(404).json({ erro: "recado nao encontrado" });
   }
 
-  if (!texto) {
+  if (!texto || !texto.trim()) {
     return res.status(400).json({ erro: "texto e obrigatorio" });
   }
 
