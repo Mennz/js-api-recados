@@ -14,8 +14,24 @@ app.get("/", (req, res) => {
   res.send("api de recados no ar");
 });
 
+let proximoId = 3;
+
 app.get("/recados", (req, res) => {
   res.json(recados);
+});
+
+app.post("/recados", (req, res) => {
+  const { texto } = req.body;
+
+  if (!texto) {
+    return res.status(400).json({ erro: "texto e obrigatorio" });
+  }
+
+  const recado = { id: proximoId, texto };
+  proximoId++;
+  recados.push(recado);
+
+  res.status(201).json(recado);
 });
 
 app.listen(PORTA, () => {
