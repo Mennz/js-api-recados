@@ -9,12 +9,11 @@ let recados = [
   { id: 1, texto: "comprar pao" },
   { id: 2, texto: "estudar express" },
 ];
+let proximoId = 3;
 
 app.get("/", (req, res) => {
   res.send("api de recados no ar");
 });
-
-let proximoId = 3;
 
 app.get("/recados", (req, res) => {
   res.json(recados);
