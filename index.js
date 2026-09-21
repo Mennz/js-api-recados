@@ -34,6 +34,24 @@ app.post("/recados", (req, res) => {
   res.status(201).json(recado);
 });
 
+app.put("/recados/:id", (req, res) => {
+  const id = Number(req.params.id);
+  const { texto } = req.body;
+
+  const recado = recados.find((r) => r.id === id);
+
+  if (!recado) {
+    return res.status(404).json({ erro: "recado nao encontrado" });
+  }
+
+  if (!texto) {
+    return res.status(400).json({ erro: "texto e obrigatorio" });
+  }
+
+  recado.texto = texto;
+  res.json(recado);
+});
+
 app.listen(PORTA, () => {
   console.log(`servidor rodando na porta ${PORTA}`);
 });
