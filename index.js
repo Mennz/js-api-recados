@@ -52,6 +52,19 @@ app.put("/recados/:id", (req, res) => {
   res.json(recado);
 });
 
+app.delete("/recados/:id", (req, res) => {
+  const id = Number(req.params.id);
+  const indice = recados.findIndex((r) => r.id === id);
+
+  if (indice === -1) {
+    return res.status(404).json({ erro: "recado nao encontrado" });
+  }
+
+  // splice tira do array e ja devolve o que foi removido
+  const [removido] = recados.splice(indice, 1);
+  res.json(removido);
+});
+
 app.listen(PORTA, () => {
   console.log(`servidor rodando na porta ${PORTA}`);
 });
